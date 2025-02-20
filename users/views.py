@@ -1,3 +1,5 @@
+
+
 from django.shortcuts import redirect
 from rest_framework import status
 from rest_framework.response import Response
@@ -8,14 +10,16 @@ from rest_framework.decorators import permission_classes
 from . serializers import UserSerializer,RegistrationSerializer,UpdateProfileSerializer
 from . models import Profile
 from django.contrib.auth.models import User
+# from django.views.decorators.csrf import csrf_exempt
 
 from django.contrib.auth import authenticate, login,logout
 
 # registration
+# @csrf_exempt
 class RegistrationView(APIView):
-    def get(self,request):
-        if request.user.is_authenticated:
-            return redirect('dashboard')
+    # def get(self,request):
+    #     if request.user.is_authenticated:
+    #         return redirect('dashboard')
     def post(self,request):
         try:
             if request.user.is_authenticated:
