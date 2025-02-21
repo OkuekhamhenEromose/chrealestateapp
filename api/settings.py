@@ -19,7 +19,7 @@ SECRET_KEY = str(os.getenv('SECRET_KEY'))
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['https://chrealestateapp.onrender.com','localhost:8000','127.0.0.1:8000']
+ALLOWED_HOSTS = ['https://chrealestateapp.onrender.com']
 
 
 # Application definition
