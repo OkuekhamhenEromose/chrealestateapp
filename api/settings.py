@@ -1,6 +1,6 @@
 import os
 from pathlib import Path
-# import dj_database_url
+import dj_database_url
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -72,31 +72,31 @@ WSGI_APPLICATION = 'api.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'chrealestateapp',  # Database name
-        'USER': 'postgres',  # Database user
-        'PASSWORD': 'f5cUnBlxTZIXemn4kMuhEUHkkmNAqGhZ',  # Database password
-        'HOST': 'https://chrealestateapp.onrender.com',  # Database host
-        'PORT': '5432',  # Default PostgreSQL port
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'chrealestateapp',  # Database name
+#         'USER': 'postgres',  # Database user
+#         'PASSWORD': 'f5cUnBlxTZIXemn4kMuhEUHkkmNAqGhZ',  # Database password
+#         'HOST': 'https://chrealestateapp.onrender.com',  # Database host
+#         'PORT': '5432',  # Default PostgreSQL port
+#     }
+# }
+
+
+DATABASE_URL = os.environ.get('DATABASEURL')
+if DATABASE_URL:
+    DATABASES = {
+        'default': dj_database_url.parse(DATABASE_URL)
     }
-}
-
-
-# DATABASE_URL = os.environ.get('DATABASEURL')
-# if DATABASE_URL:
-#     DATABASES = {
-#         'default': dj_database_url.parse(DATABASE_URL)
-#     }
-# else:
-#     print("Using default SQLite database. DATABASEURL not set.")
-#     DATABASES = {
-#         'default': {
-#             'ENGINE': 'django.db.backends.sqlite3',
-#             'NAME': BASE_DIR / 'db.sqlite3',
-#         }
-#     }
+else:
+    print("Using default SQLite database. DATABASEURL not set.")
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 
 # DATABASES = {
